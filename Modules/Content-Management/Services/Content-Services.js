@@ -25,6 +25,21 @@ export const ViewContent=async()=>{
     }
     
 }
+export const FindContent = async(request, response)=>{
+    try {
+        const{id}=request.params
+        const Users = await ContentSch.findById(id);
+        if (!Users || Users.length === 0) {
+            return response.status(404).json({ message: 'No bookuiins found' });
+        } else {
+            return response.status(200).json({ Users: Users });
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return response.status(500).json({ message: 'Error in fetching users' });
+    }
+  
+  }
 
 export const UpdateContent = async (request, response) => {
     const { id } = request.params;

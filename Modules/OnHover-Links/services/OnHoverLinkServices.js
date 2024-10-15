@@ -19,6 +19,21 @@ export const AddLink = async (request, response) => {
     }
 };
 
+export const FindSubNavOnHover = async(request, response)=>{
+    try {
+        const{id}=request.params
+        const Users = await LinkSch.findById(id);
+        if (!Users || Users.length === 0) {
+            return response.status(404).json({ message: 'No users found' });
+        } else {
+            return response.status(200).json({ Users: Users });
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return response.status(500).json({ message: 'Error in fetching users' });
+    }
+
+}
 
 export const ViewAllLinks=async(request, response)=>{
     const Links = await LinkSch.find({}).exec();

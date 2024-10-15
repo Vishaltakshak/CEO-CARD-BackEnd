@@ -8,6 +8,21 @@ export const AddInventory = async (Product) => {
         throw error;
     }
 };
+export const FindInventory = async(request, response)=>{
+    try {
+        const{id}=request.params
+        const Users = await InventorySch.findById(id);
+        if (!Users || Users.length === 0) {
+            return response.status(404).json({ message: 'No bookuiins found' });
+        } else {
+            return response.status(200).json({ Users: Users });
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return response.status(500).json({ message: 'Error in fetching users' });
+    }
+  
+  }
 
 export const fetchInventory = async (request, response) => {
     try {

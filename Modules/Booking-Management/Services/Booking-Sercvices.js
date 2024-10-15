@@ -22,6 +22,21 @@ export const ViewBooking = async(Product) => {
     }
   
 }
+export const FindBooking = async(request, response)=>{
+  try {
+      const{id}=request.params
+      const Users = await BookingSch.findById(id);
+      if (!Users || Users.length === 0) {
+          return response.status(404).json({ message: 'No bookuiins found' });
+      } else {
+          return response.status(200).json({ Users: Users });
+      }
+  } catch (error) {
+      console.error("Error fetching users:", error);
+      return response.status(500).json({ message: 'Error in fetching users' });
+  }
+
+}
 
 export const DeleteBooking = async (request, response) => {
   const { id } = request.params;
@@ -45,7 +60,6 @@ export const UpdateBooking = async (request, response) => {
   const { id } = request.params;
   const {
     Name,
-    BookingType,
     Description,
     Date,
     BookingStatus
@@ -54,7 +68,7 @@ export const UpdateBooking = async (request, response) => {
   try {
     const doc = await BookingSch.findByIdAndUpdate(id, {
       Name,
-      BookingType,
+      
       Description,
       Date,
       BookingStatus

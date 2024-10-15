@@ -2,6 +2,7 @@
 import { VendorManagementSch } from "../Model/VendorManagement-Schema.js";
 
 export const AddVendor = async (request, response) => {
+    
     const vendorData = request.body;
     try {
         const addedVendor = await VendorManagementSch.create(vendorData);
@@ -74,6 +75,22 @@ export const UpdateVendor = async (request, response) => {
     } catch (error) {
         return response.status(500).json({ message: 'Server error', error: error.message });
     }
+}
+
+export const FindVendorManagement = async(request, response)=>{
+    try {
+        const{id}=request.params
+        const Users = await VendorManagementSch.findById(id);
+        if (!Users || Users.length === 0) {
+            return response.status(404).json({ message: 'No users found' });
+        } else {
+            return response.status(200).json({ Users: Users });
+        }
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return response.status(500).json({ message: 'Error in fetching users' });
+    }
+
 }
 
 export const DeleteVendor = async (request, response) => {

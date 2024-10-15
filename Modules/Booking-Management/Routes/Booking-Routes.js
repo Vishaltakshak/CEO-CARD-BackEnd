@@ -1,9 +1,11 @@
 import express from "express";
-import { addBooking, DeleteBooking, UpdateBooking, ViewBooking } from "../Services/Booking-Sercvices.js";
+import { addBooking, DeleteBooking, FindBooking, UpdateBooking, ViewBooking } from "../Services/Booking-Sercvices.js";
 import { addBook, ViewBook } from "../controller/BookingController.js";
 
 export const BookingRoutes = express.Router();
 BookingRoutes.get('/view',ViewBook);
+BookingRoutes.get('/view/:id',FindBooking);
+
 BookingRoutes.post('/add',addBook);
 BookingRoutes.put('/update/:id',UpdateBooking);
 BookingRoutes.delete('/delete/:id',DeleteBooking);

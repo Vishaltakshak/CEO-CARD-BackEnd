@@ -10,10 +10,10 @@ export const LinkSchema=mongoose.Schema(
         ContentDescription:{type:SchemaTypes.String, required:true},
         CardTitle:{type:SchemaTypes.String, required:true},
         CardDescription:{type:SchemaTypes.String, required:true},
-        BannerIMG:{type:SchemaTypes.String, required:true},
-        ServiceIMG:{type:SchemaTypes.String, required:true},
+        BannerIMG:{type:SchemaTypes.String},
+        ServiceIMG:{type:SchemaTypes.String},
         ProviderStatus:{type:SchemaTypes.String, required:true},
-        Offer:{type:SchemaTypes.Number, required:true},
+        Offer:{type:SchemaTypes.String, required:true},
         Latitude:{type:SchemaTypes.Number, required:true},
         Longitude:{type:SchemaTypes.Number, required:true},
         ContactNumber:{type:SchemaTypes.Number, required:true}
