@@ -16,18 +16,18 @@ const App = express();
 const port=process.env.PORT||4444
 App.use(express.json());
 
-// App.use(cors({
-//     origin: 'http://localhost:5173', // Replace with your allowed origin
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     credentials: true // If you need to support cookies or authentication
-// }));
+App.use(cors({
+    origin: 'http://localhost:5173', // Replace with your allowed origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // If you need to support cookies or authentication
+}));
 
-App.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // or use '*' to allow all origins
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// App.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // or use '*' to allow all origins
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 App.use('/api/booking/services',BookingRoutes);
 App.use('/api/Content/management',ContentRoutes);
