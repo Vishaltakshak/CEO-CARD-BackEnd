@@ -15,7 +15,16 @@ import cors from 'cors'
 const App = express();
 const port=process.env.PORT||4444
 App.use(express.json());
-App.use(cors())
+
+const corsOptions = {
+    origin: ['http://localhost:5173', 'https://your-production-frontend-url.com'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,  // If you need to support cookies or authentication
+  };
+  
+App.use(cors(corsOptions));
+
 App.use('/api/booking/services',BookingRoutes);
 App.use('/api/Content/management',ContentRoutes);
 App.use('/api/Inventory/management',InventoryRouter);
