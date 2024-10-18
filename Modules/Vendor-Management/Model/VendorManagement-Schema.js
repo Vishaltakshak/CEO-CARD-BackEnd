@@ -31,7 +31,7 @@ export const VendorManagementSchema = mongoose.Schema(
       },
       required: true,
     },
-    VendorStatus: { type: SchemaTypes.String, required: true },
+    VendorStatus: { type: SchemaTypes.String },
   }
 );
 
