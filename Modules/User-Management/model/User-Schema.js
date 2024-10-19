@@ -10,10 +10,12 @@ export const UserSchema = mongoose.Schema({
     DOB: { type: SchemaTypes.Date, required: true },
     LinkedinProfile: { type: SchemaTypes.String }, // Optional field
     CompanyName: { type: SchemaTypes.String, required: true, minLength: 3 },
-    ProfessionalTitle: { type: SchemaTypes.String, required: true, minLength: 1 },
+    ProfessionalTitle: { type: SchemaTypes.String, required: true },
     Status: { type: SchemaTypes.String, default: 'Inactive' }, // Default value
     UserType: { type: SchemaTypes.String, default: 'Regular User', minLength: 3 },
-    UserImage: { type: SchemaTypes.String } // Optional field for storing image URL
+    UserImage: { type: SchemaTypes.String }, // Optional field for storing image URL
+    Currency:{type:SchemaTypes.String, default:'Dollar'},
+    Language:{type:SchemaTypes.String, default:'English'}
 });
 
 export const userSch = mongoose.model("user-management", UserSchema);

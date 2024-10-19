@@ -49,7 +49,7 @@ export const FetchUser = async (request, response) => {
 
 export const UpdateUser = async (request, response) => {
     const { id } = request.params;
-    const { Name, Mail, Role, UserType, Password, MobileNumber, CompanyName, DOB, ProfessionalTitle } = request.body;
+    const { Name, Mail, Role, UserType, Password, MobileNumber, CompanyName, DOB, ProfessionalTitle, Currency,Language } = request.body;
 
     try {
         const UpdatedUser = await userSch.findByIdAndUpdate(id, {
@@ -61,7 +61,9 @@ export const UpdateUser = async (request, response) => {
             MobileNumber,
             CompanyName,
             DOB,
-            ProfessionalTitle
+            ProfessionalTitle,
+            Currency,
+            Language
         }, { new: true });
 
         if (!UpdatedUser) {
